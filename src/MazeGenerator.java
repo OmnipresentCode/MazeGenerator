@@ -3,7 +3,7 @@ import processing.core.PApplet;
 public class MazeGenerator extends PApplet {
 	Maze maze;
 	Tracker tracker;
-	boolean track = false;
+	boolean track = true;
 
 	public static void main(String[] args) {
 		PApplet.main("MazeGenerator");
@@ -25,13 +25,14 @@ public class MazeGenerator extends PApplet {
 	 */
 	public void setup() {
 		int rows, columns;
-		float cellSize = 5;
+		float cellSize = 20;
 		rows = (int)(height/cellSize);
 		columns = (int)(width/cellSize);
 		
 		maze = new Maze(columns, rows, cellSize);
-		if(track)
+		if(track){
 			tracker = DepthFirstGenerator.stepGeneration(maze);
+		}
 		else
 			DepthFirstGenerator.generateMemSafe(maze);
 	}
